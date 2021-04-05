@@ -4,4 +4,4 @@
   tasks:
     - name: "Include setup"
       include_role:
-        name: "setup"
+        name: "{{ lookup('env', 'MOLECULE_PROJECT_DIRECTORY') | basename }}"
