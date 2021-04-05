@@ -28,9 +28,6 @@ pipeline {
 //    }
     stage('Test roles'){
       matrix {
-        agent {
-          label "molecule-${SCENARIO}"
-        }
         axes {
           axis  {
             name 'SCENARIO'
