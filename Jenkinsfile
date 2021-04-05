@@ -17,15 +17,15 @@ pipeline {
         '''
       }
     }
-    stage ('Ansible test') {
-      steps {
-        sh '''
-          ansible-test sanity
-          ansible-test units
-          ansible-test integration -v ping
-        '''
-      }
-    }
+//    stage ('Ansible test') {
+//      steps {
+//        sh '''
+//          ansible-test sanity
+//          ansible-test units
+//          ansible-test integration -v ping
+//        '''
+//      }
+//    }
     stage ('Molecule test') {
       parallel {
         stage('role rsyslog') {
