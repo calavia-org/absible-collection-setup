@@ -45,6 +45,7 @@ pipeline {
               pip install junit_xml 
               ANSIBLE_STDOUT_CALLBACK=junit JUNIT_OUTPUT_DIR="molecule/rsyslog/reports/junit" JUNIT_FAIL_ON_CHANGE=true JUNIT_HIDE_TASK_ARGUMENTS=true JUNIT_INCLUDE_SETUP_TASKS_IN_REPORT=no JUNIT_TEST_CASE_PREFIX=Test JUNIT_TASK_CLASS=true molecule verify -s rsyslog
             '''
+            junit '**/reports/junit/*.xml'
           }
         }
         stage('role logrotate') {
@@ -64,6 +65,7 @@ pipeline {
               pip install junit_xml 
               ANSIBLE_STDOUT_CALLBACK=junit JUNIT_OUTPUT_DIR="molecule/logrotate/reports/junit" JUNIT_FAIL_ON_CHANGE=true JUNIT_HIDE_TASK_ARGUMENTS=true JUNIT_INCLUDE_SETUP_TASKS_IN_REPORT=no JUNIT_TEST_CASE_PREFIX=Test JUNIT_TASK_CLASS=true molecule verify -s logrotate
             '''
+            junit '**/reports/junit/*.xml'
           }
         }
       }
@@ -72,7 +74,6 @@ pipeline {
   } // close stages
   post {
       always {
-        junit '**/reports/junit/*.xml'
         sh 'molecule destroy'
       }
    } 
