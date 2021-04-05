@@ -74,9 +74,5 @@ pipeline {
    }
 
   } // close stages
-  post {
-      always {
-      }
-   } 
 }// close pipeline
 
