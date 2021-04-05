@@ -44,6 +44,7 @@ pipeline {
               molecule idempotence -s rsyslog
               pip install junit_xml 
               ANSIBLE_STDOUT_CALLBACK=junit JUNIT_OUTPUT_DIR="molecule/rsyslog/reports/junit" JUNIT_FAIL_ON_CHANGE=true JUNIT_HIDE_TASK_ARGUMENTS=true JUNIT_INCLUDE_SETUP_TASKS_IN_REPORT=no JUNIT_TEST_CASE_PREFIX=Test JUNIT_TASK_CLASS=true molecule verify -s rsyslog
+              molecule destroy
             '''
             junit '**/reports/junit/*.xml'
           }
@@ -64,6 +65,7 @@ pipeline {
               molecule idempotence -s logrotate
               pip install junit_xml 
               ANSIBLE_STDOUT_CALLBACK=junit JUNIT_OUTPUT_DIR="molecule/logrotate/reports/junit" JUNIT_FAIL_ON_CHANGE=true JUNIT_HIDE_TASK_ARGUMENTS=true JUNIT_INCLUDE_SETUP_TASKS_IN_REPORT=no JUNIT_TEST_CASE_PREFIX=Test JUNIT_TASK_CLASS=true molecule verify -s logrotate
+              molecule destroy
             '''
             junit '**/reports/junit/*.xml'
           }
@@ -74,7 +76,6 @@ pipeline {
   } // close stages
   post {
       always {
-        sh 'molecule destroy'
       }
    } 
 }// close pipeline
