@@ -1,3 +1,10 @@
 # Ansible Collection - calaviaorg.setup
 
-Documentation for the collection.
+This Ansbile collection is intended to be used in order to setup:
+
+* Loging
+
+## Supported platforms
+
+* MacOS
+* Ubuntu / Debian
