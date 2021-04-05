@@ -1,0 +1,7 @@
+---
+- name: Converge
+  hosts: all
+  tasks:
+    - name: "Include logrotate role"
+      include_role:
+        name: calaviaorg.setup.logrotate
