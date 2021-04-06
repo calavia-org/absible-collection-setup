@@ -2,6 +2,7 @@ pipeline {
 
   agent {
     docker {
+      label ‘*-molecule-agent’
       image 'robertdebock/github-action-molecule'
       args '-u 0 -v /var/run/docker.sock:/var/run/docker.sock'
     }
@@ -35,7 +36,7 @@ pipeline {
           }
         }
         agent {
-          label "${SCENARIO}-agent"
+          label "${SCENARIO}-molecule-agent"
         }
         stages {
           stage('Molecule Test') {
