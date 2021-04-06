@@ -8,7 +8,7 @@ lint: |
 driver:
   name: docker
 platforms:
-  - name: "ubuntu-rsyslog-instance"
+  - name: "ubuntu-logrotate-instance"
     image: "calaviaorg/ubuntu-systemd:focal"
     command: /sbin/init
     volumes:
