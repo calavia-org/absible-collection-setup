@@ -38,10 +38,13 @@ pipeline {
           label "${SCENARIO}-agent"
         }
         stages {
-          stage('role' + ${SCENARIO}) {
+          stage('Molecule Test') {
             when { 
               beforeAgent true
-              changeset pattern: "**/${SCENARIO}/.yml", caseSensitive: true 
+              anyOf {
+                changeset "roles/${SCENARIO}/*.yml"
+                changeset "molecule/${SCENARIO}/*.yml"
+              }
             }
             steps {
               sh '''
