@@ -34,8 +34,11 @@ pipeline {
             values 'rsyslog', 'logrotate'
           }
         }
+        agent {
+          label "${SCENARIO}-agent"
+        }
         stages {
-          stage('role ${SCENARIO}') {
+          stage("role ${SCENARIO}") {
             when { 
               beforeAgent true
               changeset pattern: "**/${SCENARIO}/.yml", caseSensitive: true 
