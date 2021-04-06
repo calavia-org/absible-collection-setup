@@ -1,2 +1,6 @@
 ---
 # tasks file for rsyslog
+
+- name: 'Dummy task from rsyslog'
+  ansible.builtin.debug:
+    msg: 'Inside rsyslog'

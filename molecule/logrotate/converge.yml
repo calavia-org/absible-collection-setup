@@ -4,4 +4,4 @@
   tasks:
     - name: "Include logrotate role"
       include_role:
-        name: calaviaorg.setup.logrotate
+        name: "{{ lookup('env', 'MOLECULE_PROJECT_DIRECTORY') }}/roles/logrotate"

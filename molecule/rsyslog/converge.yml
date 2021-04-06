@@ -4,4 +4,4 @@
   tasks:
     - name: "Include rsyslog role"
       include_role:
-        name: rsyslog 
+        name: "{{ lookup('env', 'MOLECULE_PROJECT_DIRECTORY') }}/roles/rsyslog"
