@@ -4,4 +4,4 @@
   tasks:
     - name: "Include rsyslog role"
       include_role:
-        name: calaviaorg.setup.rsyslog 
+        name: rsyslog 
