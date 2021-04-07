@@ -4,9 +4,20 @@
 - name: Verify
   hosts: all
   gather_facts: false
+  ignore_errors: true
 
   tasks:
-    - name: 'Test simple'
-      assert:
+    - name: 'Test OK'
+      ansible.builtin.assert:
         that:
           - 1 == 1
+
+    - name: 'Test KO 1'
+      ansible.builtin.assert:
+        that:
+          - 2 == 1
+
+    - name: 'Test KO 2'
+      ansible.builtin.assert:
+        that:
+          - 2 == 3
