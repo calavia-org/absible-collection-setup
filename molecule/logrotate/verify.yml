@@ -1,5 +1,6 @@
 ---
-# This is an example playbook to execute Ansible tests.
+# Ansible tests.
+# Ignore errors is set to 'true' in order to enable CI
 
 - name: Verify
   hosts: all
