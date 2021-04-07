@@ -17,8 +17,3 @@
       ansible.builtin.assert:
         that:
           - 2 == 2 
-
-    - name: 'Test KO'
-      ansible.builtin.assert:
-        that:
-          - 2 == 4 
