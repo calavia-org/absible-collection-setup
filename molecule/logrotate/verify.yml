@@ -4,6 +4,7 @@
 - name: Verify
   hosts: all
   gather_facts: false
+  ignore_errors: true
 
   tasks:
     - name: 'Test OK'
