@@ -53,12 +53,16 @@ pipeline {
                 ANSIBLE_STDOUT_CALLBACK=junit JUNIT_OUTPUT_DIR="molecule/${SCENARIO}/reports/junit" JUNIT_FAIL_ON_CHANGE=true JUNIT_HIDE_TASK_ARGUMENTS=true JUNIT_INCLUDE_SETUP_TASKS_IN_REPORT=no JUNIT_TEST_CASE_PREFIX=Test JUNIT_TASK_CLASS=true molecule verify -s ${SCENARIO}
                 molecule destroy
               '''
-              junit '**/reports/junit/*.xml'
             }
           }
         }
       }
     }
   } // close stages
+  post {
+    always {
+      junit '**/reports/junit/*.xml'
+    }
+  }
 }// close pipeline
 
