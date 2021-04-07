@@ -11,8 +11,12 @@
         that:
           - 1 == 1
 
-
-    - name: 'Test KO'
+    - name: 'Test KO 1'
       ansible.builtin.assert:
         that:
           - 2 == 1
+
+    - name: 'Test KO 2'
+      ansible.builtin.assert:
+        that:
+          - 2 == 3
