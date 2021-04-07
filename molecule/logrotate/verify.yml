@@ -10,11 +10,11 @@
       ansible.builtin.assert:
         that:
           - 1 == 1
-      failed_when: false
+      changed_when: false
 
 
     - name: 'Test KO'
       ansible.builtin.assert:
         that:
           - 2 == 1
-      failed_when: false
+      changed_when: false
