@@ -1,5 +1,6 @@
 ---
-# This is an example playbook to execute Ansible tests.
+# Ansible tests.
+# Ignore errors is set to 'true' in order to enable CI
 
 - name: Verify
   hosts: all
@@ -7,17 +8,12 @@
   ignore_errors: true
 
   tasks:
-    - name: 'Test OK'
+    - name: 'Test OK - 1'
       ansible.builtin.assert:
         that:
           - 1 == 1
 
-    - name: 'Test KO 1'
+    - name: 'Test OK - 2'
       ansible.builtin.assert:
         that:
-          - 2 == 1
-
-    - name: 'Test KO 2'
-      ansible.builtin.assert:
-        that:
-          - 2 == 3
+          - 2 == 2 
