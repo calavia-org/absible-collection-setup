@@ -7,17 +7,17 @@
   ignore_errors: true
 
   tasks:
-    - name: 'Test OK'
+    - name: 'Test OK - 1'
       ansible.builtin.assert:
         that:
           - 1 == 1
 
-    - name: 'Test KO 1'
+    - name: 'Test OK - 2'
       ansible.builtin.assert:
         that:
-          - 2 == 1
+          - 2 == 2 
 
-    - name: 'Test KO 2'
+    - name: 'Test KO'
       ansible.builtin.assert:
         that:
           - 2 == 3
