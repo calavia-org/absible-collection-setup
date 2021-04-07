@@ -17,15 +17,15 @@ pipeline {
         '''
       }
     }
-//    stage ('Ansible test') {
-//      steps {
-//        sh '''
-//          ansible-test sanity
-//          ansible-test units
-//          ansible-test integration -v ping
-//        '''
-//      }
-//    }
+    stage ('Ansible test') {
+      steps {
+        sh '''
+          ansible-test sanity
+          ansible-test units --coverage
+          ansible-test integration --coverage
+        '''
+      }
+    }
     stage('Test roles'){
       matrix {
         axes {
@@ -46,6 +46,7 @@ pipeline {
             steps {
               sh '''
                 pip install junit_xml 
+                pip install coverage==4.5.4
                 molecule lint -s ${SCENARIO}
                 molecule destroy -s ${SCENARIO}
                 molecule converge -s ${SCENARIO} 
