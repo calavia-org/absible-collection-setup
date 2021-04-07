@@ -6,8 +6,16 @@
   gather_facts: false
 
   tasks:
-    - name: 'Test simple'
-      assert:
+    - name: 'Test OK'
+      ansible.builtin.assert:
         that:
           - 1 == 1
+      failed_when: false
+
+
+    - name: 'Test KO'
+      ansible.builtin.assert:
+        that:
           - 2 == 1
+      failed_when: false
+
