@@ -9,23 +9,23 @@ pipeline {
 
   stages {
 
-    stage ('Display versions') {
-      steps {
-        sh '''
-          ansible --version
-          molecule --version
-        '''
-      }
-    }
-    stage ('Ansible test') {
-      steps {
-        sh '''
-          ansible-test sanity
-          ansible-test units --coverage
-          ansible-test integration --coverage
-        '''
-      }
-    }
+#    stage ('Display versions') {
+#      steps {
+#        sh '''
+#          ansible --version
+#          molecule --version
+#        '''
+#      }
+#    }
+#    stage ('Ansible test') {
+#      steps {
+#        sh '''
+#          ansible-test sanity
+#          ansible-test units --coverage
+#          ansible-test integration --coverage
+#        '''
+#      }
+#    }
     stage('Test roles'){
       matrix {
         axes {
