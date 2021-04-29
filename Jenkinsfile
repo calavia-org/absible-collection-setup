@@ -36,6 +36,13 @@ pipeline {
         }
         stages {
           stage('Molecule Test') {
+            agent {
+              docker {
+                image 'robertdebock/github-action-molecule'
+                args '-u 0 -v /var/run/docker.sock:/var/run/docker.sock'
+                label 'molecule_test - ' + $SCENARIO
+              }
+            }
             when { 
               beforeAgent true
               anyOf {
