@@ -1,8 +1,10 @@
 #!/usr/bin/python
 
-# Copyright: (c) 2018, Terry Jones <terry.jones@example.org>
-# GNU General Public License v3.0+ (see COPYING or https://www.gnu.org/licenses/gpl-3.0.txt)
+'''
+    Cosmetic
+'''
 from __future__ import (absolute_import, division, print_function)
+from ansible.module_utils.basic import AnsibleModule
 __metaclass__ = type
 
 DOCUMENTATION = r'''
@@ -56,7 +58,6 @@ EXAMPLES = r'''
 '''
 
 RETURN = r'''
-# These are examples of possible return values, and in general should use other names for return values.
 original_message:
     description: The original name param that was passed in.
     type: str
@@ -69,10 +70,11 @@ message:
     sample: 'goodbye'
 '''
 
-from ansible.module_utils.basic import AnsibleModule
-
 
 def run_module():
+    '''
+    Cosmetic
+    '''
     # define available arguments/parameters a user can pass to the module
     module_args = dict(
         name=dict(type='str', required=True),
@@ -127,6 +129,9 @@ def run_module():
 
 
 def main():
+    '''
+    Cosmetic
+    '''
     run_module()
 
 
