@@ -1,6 +1,9 @@
 ---
 # Based on ansible-lint config
 extends: default
+ignore: |
+  .tox
+  .venv
 
 rules:
   braces:
