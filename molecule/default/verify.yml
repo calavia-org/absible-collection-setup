@@ -3,8 +3,6 @@
 
 - name: 'verify'
   hosts: all
-  gather_facts: false
-  ignore_errors: true
 
   tasks:
     - name: 'example assertion 2'
