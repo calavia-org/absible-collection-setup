@@ -7,7 +7,7 @@
   ignore_errors: true
 
   tasks:
-    - name: 'test simple'
+    - name: 'Tst simple'
       ansible.builtin.assert:
         that:
           - 1 == 1
