@@ -1,9 +1,22 @@
 ---
 dependency:
   name: galaxy
-  options:
-    requirements-file: requirements.yml
-lint: |
-  set -e
-  yamllint .
-  ansible-lint .
+  enabled: False
+
+provisioner:
+  name: ansible
+
+scenario:
+  test_sequence:
+    - dependency
+    - destroy
+    - create
+    - prepare
+    - converge
+    - idempotence
+#    - side_effect
+    - verify
+    - destroy
+
+verifier:
+  name: ansible

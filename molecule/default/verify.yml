@@ -6,6 +6,6 @@
 
   tasks:
     - name: 'example assertion 2'
-      assert:
+      ansible.builtin.assert:
         that:
           - 1 == 1
