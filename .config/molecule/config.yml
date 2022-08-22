@@ -1,4 +1,6 @@
 ---
+prerun: False
+
 dependency:
   name: galaxy
   enabled: False
@@ -11,7 +13,7 @@ scenario:
     - dependency
     - destroy
     - create
-    - prepare
+#    - prepare
     - converge
     - idempotence
 #    - side_effect
