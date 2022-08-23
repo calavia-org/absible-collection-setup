@@ -8,3 +8,9 @@ This Ansbile collection is intended to be used in order to setup:
 
 * MacOS
 * Ubuntu / Debian
+
+## Develop
+
+```bash
+$> pip install tox-ansible
+```
