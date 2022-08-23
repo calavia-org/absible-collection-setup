@@ -23,12 +23,6 @@ jobs:
           cache: pip
       - name: run lint
         run: |
-          pip install --upgrade pip
-          python3 -m pip install virtualenv
-
-          python3 -m virtualenv .venv --python=${{ matrix.python-version }}
-          source .venv/bin/activate
-
           python3 -m pip install tox-ansible
           python3 -m tox -e lint_all
           python3 -m tox -e sanity
@@ -54,12 +48,6 @@ jobs:
 
       - name: ansible-test
         run: |
-          pip install --upgrade pip
-          python3 -m pip install virtualenv
-
-          python3 -m virtualenv .venv --python=${{ matrix.python-version }}
-          source .venv/bin/activate
-
           python3 -m pip install tox-ansible
           python3 -m tox -e env
           python3 -m tox -e coverage
