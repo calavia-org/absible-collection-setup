@@ -1,2 +1,5 @@
 .cache/
-.gz
+.tox
+.venv
+dist
+tests/output/tt

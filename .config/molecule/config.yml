@@ -1,0 +1,24 @@
+---
+prerun: False
+
+dependency:
+  name: galaxy
+  enabled: False
+
+provisioner:
+  name: ansible
+
+scenario:
+  test_sequence:
+    - dependency
+    - destroy
+    - create
+#    - prepare
+    - converge
+    - idempotence
+#    - side_effect
+    - verify
+    - destroy
+
+verifier:
+  name: ansible

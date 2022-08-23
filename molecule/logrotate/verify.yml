@@ -2,7 +2,7 @@
 # Ansible tests.
 # Ignore errors is set to 'true' in order to enable CI
 
-- name: Verify
+- name: 'verify'
   hosts: all
   gather_facts: false
   ignore_errors: true
@@ -16,4 +16,4 @@
     - name: 'Test OK - 2'
       ansible.builtin.assert:
         that:
-          - 2 == 2 
+          - 2 == 2
