@@ -16,6 +16,7 @@ jobs:
         run: |
           python3 -m pip install -U tox-ansible
           python3 -m tox -e lint_all
+          python3 -m tox -e sanity
 
   test:
     name: ${{ matrix.name }}
@@ -38,9 +39,9 @@ jobs:
 
       - name: ansible-test
         run: |
+          sudo apt remove -y python2.7 python3.8
           python3 -m pip install tox-ansible
           python3 -m tox -e env
-          python3 -m tox -e sanity
           python3 -m tox -e coverage
 
       - name: molecule
