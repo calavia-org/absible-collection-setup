@@ -50,7 +50,9 @@ jobs:
         run: |
           python3 -m pip install tox-ansible
           python3 -m tox -e env
-          python3 -m tox -e coverage
+          python3 -m tox -e units -- --coverage --python ${{ matrix.python-version }}
+          python3 -m tox -e integration -- --coverage --python ${{ matrix.python-version }}
+        
 
       - name: molecule
         run: |
