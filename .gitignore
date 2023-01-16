@@ -1,3 +1,11 @@
+# Files by extenssion
+*.swp
+
+# Hidden directories
 .cache/
-.gz
+.tox/
+.venv/
+
+# Directories
+dist/
 tests/output/
