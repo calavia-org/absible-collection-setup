@@ -1,3 +1,6 @@
 ansible-core
+ansible-lint
 molecule
-molecule[docker,lint] 
+molecule-docker
+pre-commit
+tox-ansible
