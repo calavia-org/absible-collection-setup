@@ -6,11 +6,14 @@ dependency:
     requirements-file: requirements.yml
 platforms:
   - name: test
-    image: alpine:latest
+    image: python:slim
     pre_build_image: true
 driver:
   name: docker
 provisioner:
   name: ansible
+  inventory:
+    group_vars:
+      all: {}
 verifier:
   name: ansible
