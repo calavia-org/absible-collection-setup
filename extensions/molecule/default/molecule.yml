@@ -1,4 +1,0 @@
-platforms:
-  - name: test
-    image: alpine:latest
-    pre_build_image: true

@@ -1,6 +1,6 @@
 ansible-core
 ansible-lint
 molecule
-molecule-docker
+molecule-podman
 pre-commit
 tox-ansible

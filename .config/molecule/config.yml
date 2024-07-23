@@ -5,7 +5,7 @@ dependency:
     role-file: requirements.yml
     requirements-file: requirements.yml
 platforms:
-  - name: test-$MOLECULE_EPHEMERAL_DIRECTORY
+  - name: test
     image: alpine:latest
     pre_build_image: true
 driver:
