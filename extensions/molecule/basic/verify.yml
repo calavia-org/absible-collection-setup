@@ -4,11 +4,7 @@
 - name: Verify
   hosts: all
   gather_facts: false
-
   tasks:
-    - name: 'Test simple'
-      assert:
-        that:
-          - 1 == 1
-          - 2 == 2
-          - 3 == 3
+  - name: 'Example assertion'
+    ansible.builtin.assert:
+      that: true

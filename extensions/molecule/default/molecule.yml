@@ -1,3 +1,4 @@
----
 platforms:
-  - name: test-$MOLECULE_EPHEMERAL_DIRECTORY
+  - name: test
+    image: alpine:latest
+    pre_build_image: true

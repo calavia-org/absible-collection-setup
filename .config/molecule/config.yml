@@ -4,12 +4,13 @@ dependency:
   options:
     role-file: requirements.yml
     requirements-file: requirements.yml
-lint: |
-  set -e
-  yamllint .
+platforms:
+  - name: test-$MOLECULE_EPHEMERAL_DIRECTORY
+    image: alpine:latest
+    pre_build_image: true
 driver:
-  name: delegated
-rovisioner:
+  name: docker
+provisioner:
   name: ansible
 verifier:
   name: ansible

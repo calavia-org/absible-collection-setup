@@ -1,0 +1,1 @@
+/workspaces/ansible-collection-setup/CODE_OF_CONDUCT.md

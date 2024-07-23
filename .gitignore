@@ -3,10 +3,9 @@
 
 # Hidden directories
 .cache/
+.pytest_cache
 .tox/
 .venv/
 
 # Directories
-dist/
-tests/output/
 **/__pycache__
