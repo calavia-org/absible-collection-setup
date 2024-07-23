@@ -1,0 +1,5 @@
+---
+- name: 'Installing git with homebrew'
+  homebrew:
+    name: git
+    state: present
