@@ -11,7 +11,8 @@
 				"redhat.vscode-yaml",
 				"elagil.pre-commit-helper",
 				"ms-azuretools.vscode-docker",
-				"ms-python.python"
+				"ms-python.python",
+				"github.vscode-github-actions"
 			]
 		}
 	},

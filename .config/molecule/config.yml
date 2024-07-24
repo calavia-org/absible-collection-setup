@@ -12,8 +12,13 @@ driver:
   name: docker
 provisioner:
   name: ansible
+  config_options:
+    defaults:
+      callbacks_enabled: ansible.posix.profile_tasks
   inventory:
     group_vars:
       all: {}
 verifier:
   name: ansible
+  env:
+    FOO: bar
