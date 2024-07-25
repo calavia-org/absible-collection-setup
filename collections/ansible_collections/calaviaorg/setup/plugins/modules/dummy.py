@@ -1,5 +1,3 @@
-#!/usr/bin/python
-
 # Ansible Collection Setup
 # Copyright (C) 2024  calavia.org
 
