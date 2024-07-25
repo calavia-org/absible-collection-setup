@@ -1,24 +1,24 @@
 ---
-prerun: False
-
 dependency:
   name: galaxy
-  enabled: False
-
+  options:
+    role-file: requirements.yml
+    requirements-file: requirements.yml
+platforms:
+  - name: test
+    image: python:slim
+    pre_build_image: true
+driver:
+  name: docker
 provisioner:
   name: ansible
-
-scenario:
-  test_sequence:
-    - dependency
-    - destroy
-    - create
-#    - prepare
-    - converge
-    - idempotence
-#    - side_effect
-    - verify
-    - destroy
-
+  config_options:
+    defaults:
+      callbacks_enabled: ansible.posix.profile_tasks
+  inventory:
+    group_vars:
+      all: {}
 verifier:
   name: ansible
+  env:
+    FOO: bar

@@ -1,6 +1,0 @@
----
-# tasks file for logrotate
-
-- name: 'Dummy task from logrotate'
-  ansible.builtin.debug:
-    msg: 'Inside logrotate'

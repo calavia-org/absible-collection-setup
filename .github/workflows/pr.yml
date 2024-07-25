@@ -1,0 +1,14 @@
+name: Test collection
+
+concurrency:
+  group: ${{ github.workflow }}-${{ github.event.pull_request.number || github.ref }}
+  cancel-in-progress: true
+
+on:
+  pull_request:
+    branches: [main]
+  workflow_dispatch:
+
+jobs:
+  tox-ansible:
+    uses: ansible/tox-ansible/.github/workflows/run.yml@main

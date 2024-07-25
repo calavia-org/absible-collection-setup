@@ -18,7 +18,6 @@ readme: README.md
 authors:
 - Jorge Calavia <jorge@calavia.org>
 
-
 ### OPTIONAL but strongly recommended
 # A short summary description of the collection
 description: Setup local environmens

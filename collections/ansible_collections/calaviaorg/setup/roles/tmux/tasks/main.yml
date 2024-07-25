@@ -1,0 +1,6 @@
+---
+# tasks file for tmux
+
+- name: 'Dummy task from tmux'
+  ansible.builtin.debug:
+    msg: 'Inside tmux'
