@@ -62,7 +62,7 @@ jobs:
       - name: SonarCloud Scan
         uses: sonarsource/sonarcloud-github-action@master
         with:
-          projectBaseDir: collections/ansible_collections/calaviaorg/setuo
+          projectBaseDir: collections/ansible_collections/calaviaorg/setup
           args: >
             -Dsonar.projectKey=calavia-org_ansible-collection-setup
             -Dsonar.junit.reportPaths=tests/reports/unit.xml,tests/reports/integration.xml
