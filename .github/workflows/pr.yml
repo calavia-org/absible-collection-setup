@@ -30,8 +30,8 @@ jobs:
         id: generate-matrix
         run: |
           python3 -m tox --ansible --gh-matrix --conf tox-ansible.ini
-        outputs:
-          envlist: ${{ steps.generate-matrix.outputs.envlist }}
+    outputs:
+      envlist: ${{ steps.generate-matrix.outputs.envlist }}
 
   test:
     needs: tox-matrix
