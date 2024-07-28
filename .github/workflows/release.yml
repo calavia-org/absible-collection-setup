@@ -1,0 +1,76 @@
+name: Sonar Cloud - Branch Analysis
+
+on:
+  push:
+    branches: 
+      - main
+      - release-*
+
+jobs:
+  release:
+    name: Build and analyze
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: ${{ github.event.pull_request.head.ref }}
+          fetch-depth: 0
+
+      - name: Setup Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Install tox-ansible, includes tox
+        run: python3 -m pip install tox-ansible
+
+      - name: Run sanity test
+        run: >-
+          python3 -m tox
+          --ansible
+          -e sanity-py3.12-2.17
+          --conf tox-ansible.ini
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Run unit test
+        run: >-
+          python3 -m tox
+          --ansible
+          -e unit-py3.12-2.17
+          --conf tox-ansible.ini
+          --
+          --show-capture=all
+          --cov=unit
+          --cov-report=xml
+          --junit-xml=test/reports/unit.xml
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+  
+      - name: Run integration test
+        run: >-
+          python3 -m tox
+          --ansible
+          -e unit-py3.12-2.17
+          --conf tox-ansible.ini
+          --
+          --show-capture=all
+          --junit-xml=test/reports/integration.xml
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: SonarCloud Scan
+        uses: sonarsource/sonarcloud-github-action@master
+        with:
+          projectBaseDir: collections/ansible_collections/calaviaorg/setuo
+          args: >
+            -Dsonar.projectKey=calavia-org_ansible-collection-setup
+            -Dsonar.junit.reportPaths=tests/reports/unit.xml,tests/reports/integration.xml
+            -Dsonar.python.coverage.reportPaths=coverage.xml
+            -Dsonar.sources=lib/
+            -Dsonar.test.exclusions=tests/**
+            -Dsonar.tests=tests/
+            -Dsonar.verbose=true
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
