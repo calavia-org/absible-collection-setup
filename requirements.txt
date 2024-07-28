@@ -3,5 +3,6 @@ ansible-lint
 molecule
 molecule-docker
 pre-commit
-tox-ansible
+pytest-cov
 python-docker
+tox-ansible
