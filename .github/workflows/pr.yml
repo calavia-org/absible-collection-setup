@@ -70,9 +70,9 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
       - name: Create test summary
-        uses: test-summary/action@dist
+        uses: mikepenz/action-junit-report@v4
         with:
-          paths: test/reports/unit-*.xml
+          report_paths: test/reports/unit-*.xml
         if: always()
 
   test_passed:
