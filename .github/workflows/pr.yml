@@ -64,4 +64,4 @@ jobs:
     needs: test
     runs-on: ubuntu-latest
     steps:
-      - run: python -c "assert set(['${{}} needs.test.result }}',]) == {'success'}"
+      - run: python -c "assert set(['${{ needs.test.result }}',]) == {'success'}"
