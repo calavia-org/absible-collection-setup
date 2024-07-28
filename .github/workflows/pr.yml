@@ -87,7 +87,7 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        entry: ${{ fromJson(needs.tox-matrix.outputs.unitEnvList) }}
+        entry: ${{ fromJson(needs.tox-matrix.outputs.integrationEnvList) }}
     name: ${{ matrix.entry.name }}
     runs-on: ubuntu-latest
     steps:
@@ -126,4 +126,8 @@ jobs:
     needs: [unit_test, integration_test]
     runs-on: ubuntu-latest
     steps:
-      - run: python -c "assert set(['${{ needs.unit_test.result }}',  ${{ needs.integration_test.result }}]) == {'success'}"
+      - run: >-
+          python -c "assert set([
+          '${{ needs.unit_test.result }}',
+          '${{ needs.integration_test.result }}'
+          ]) == {'success'}"
