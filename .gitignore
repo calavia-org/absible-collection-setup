@@ -1,5 +1,6 @@
 # Files by extenssion
 *.swp
+coverage.*
 
 # Hidden directories
 .cache/
