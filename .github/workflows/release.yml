@@ -1,4 +1,4 @@
-name: Sonar Cloud - Branch Analysis
+name: Release Collection
 
 on:
   push:
