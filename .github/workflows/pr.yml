@@ -62,7 +62,9 @@ jobs:
           -e ${{ matrix.entry.name }}
           --conf tox-ansible.ini
           --
+          --show-capture=all
           --cov=unit
+          --cov-report=xml
           --junit-xml=test/reports/unit-${{ matrix.entry.name }}.xml
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
