@@ -123,7 +123,7 @@ jobs:
         if: always()
 
   test_passed:
-    needs: unit_test, integration_test
+    needs: [unit_test, integration_test]
     runs-on: ubuntu-latest
     steps:
       - run: python -c "assert set(['${{ needs.unit_test.result }}',  ${{ needs.integration_test.result }}]) == {'success'}"
