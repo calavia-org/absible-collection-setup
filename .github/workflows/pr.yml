@@ -67,11 +67,11 @@ jobs:
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
-      - name: Create test summary
-        uses: test-summary/action@dist
-        with:
-          paths: test/reports/unit-*.xml
-        if: always()
+      # - name: Create test summary
+      #   uses: test-summary/action@dist
+      #   with:
+      #     paths: test/reports/unit-*.xml
+      #   if: always()
 
   test_passed:
     needs: test
