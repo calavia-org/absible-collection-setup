@@ -82,45 +82,45 @@ jobs:
           report_paths: test/reports/unit-*.xml
         if: always()
 
-  unit_test:
-  needs: tox-matrix
-  strategy:
-    fail-fast: false
-    matrix:
-      entry: ${{ fromJson(needs.tox-matrix.outputs.unitEnvList) }}
-  name: ${{ matrix.entry.name }}
-  runs-on: ubuntu-latest
-  steps:
-    - uses: actions/checkout@v4
-      with:
-        ref: ${{ github.event.pull_request.head.sha }}
-        fetch-depth: 0
+  integration_test:
+    needs: tox-matrix
+    strategy:
+      fail-fast: false
+      matrix:
+        entry: ${{ fromJson(needs.tox-matrix.outputs.unitEnvList) }}
+    name: ${{ matrix.entry.name }}
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: ${{ github.event.pull_request.head.sha }}
+          fetch-depth: 0
       
-    - name: Set up Python
-      uses: actions/setup-python@v5
-      with:
-        python-version: ${{ matrix.entry.python }}
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: ${{ matrix.entry.python }}
       
-    - name: Install tox-ansible, includes tox
-      run: python3 -m pip install tox-ansible
+      - name: Install tox-ansible, includes tox
+        run: python3 -m pip install tox-ansible
       
-    - name: Run tox test
-      run: >-
-        python3 -m tox
-        --ansible
-        -e ${{ matrix.entry.name }}
-        --conf tox-ansible.ini
-        --
-        --show-capture=all
-        --junit-xml=test/reports/integration-${{ matrix.entry.name }}.xml
-      env:
-        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      - name: Run tox test
+        run: >-
+          python3 -m tox
+          --ansible
+          -e ${{ matrix.entry.name }}
+          --conf tox-ansible.ini
+          --
+          --show-capture=all
+          --junit-xml=test/reports/integration-${{ matrix.entry.name }}.xml
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       
-    - name: Create test summary
-      uses: mikepenz/action-junit-report@v4
-      with:
-        report_paths: test/reports/unit-*.xml
-      if: always()
+      - name: Create test summary
+        uses: mikepenz/action-junit-report@v4
+        with:
+          report_paths: test/reports/unit-*.xml
+        if: always()
 
   test_passed:
     needs: unit_test, integration_test
