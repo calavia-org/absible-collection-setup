@@ -64,6 +64,7 @@ jobs:
         with:
           projectBaseDir: collections/ansible_collections/calaviaorg/setup
           args: >
+            -Dsonar.organization=calavia-org
             -Dsonar.projectKey=calavia-org_ansible-collection-setup
             -Dsonar.junit.reportPaths=tests/reports/unit.xml,tests/reports/integration.xml
             -Dsonar.python.coverage.reportPaths=coverage.xml
