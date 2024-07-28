@@ -3,10 +3,11 @@
 
 # Hidden directories
 .cache/
+.coverage
 .pytest_cache
 .tox/
 .venv/
 
 # Directories
 **/__pycache__
-tests/output
+tests/reports
