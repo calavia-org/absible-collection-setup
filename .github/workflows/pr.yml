@@ -38,7 +38,7 @@ jobs:
 
     outputs:
       unitEnvList: ${{ steps.unit-matrix.outputs.envlist }}
-      integrationEnvList: ${{ steps.integreation-matrix.outputs.envlist }}
+      integrationEnvList: ${{ steps.integration-matrix.outputs.envlist }}
 
   unit_test:
     needs: tox-matrix
@@ -119,7 +119,7 @@ jobs:
       - name: Create test summary
         uses: mikepenz/action-junit-report@v4
         with:
-          report_paths: test/reports/unit-*.xml
+          report_paths: test/reports/integration-*.xml
         if: always()
 
   test_passed:
