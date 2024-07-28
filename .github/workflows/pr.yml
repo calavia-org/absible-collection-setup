@@ -67,14 +67,14 @@ jobs:
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
-      # - name: Create test summary
-      #   uses: test-summary/action@dist
-      #   with:
-      #     paths: test/reports/unit-*.xml
-      #   if: always()
+      - name: Create test summary
+        uses: test-summary/action@dist
+        with:
+          paths: test/reports/unit-*.xml
+        if: always()
 
   test_passed:
-    needs: test
+    needs: unit_test
     runs-on: ubuntu-latest
     steps:
-      - run: python -c "assert set(['${{ needs.test.result }}',]) == {'success'}"
+      - run: python -c "assert set(['${{ needs.unit_test.result }}',]) == {'success'}"
