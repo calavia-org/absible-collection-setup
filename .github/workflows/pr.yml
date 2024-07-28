@@ -12,60 +12,57 @@ on:
     jobs:
       tox-matrix:
         runs-on: ubuntu-latest
+        steps:
+          - uses: actions/checkout@v4
+            with:
+              ref: ${{ github.event.pull_request.head.ref }}
+              repository: ${{ github.event.pull_request.head.repo.full_name }}
+
+          - name: Setup Python
+            uses: actions/setup-python@v5
+            with:
+              python-version: "3.11"
+
+          - name: Install tox-ansible, includes tox
+            run: python3 -m pip install tox-ansible
+
+          - name: Generate matrix
+            id: generate-matrix
+            run: |
+              python3 -m tox --ansible --gh-matrix --conf tox-ansible.ini
+            outputs:
+              envlist: ${{ steps.generate-matrix.outputs.envlist }}
+
+      test:
+        needs: tox-matrix
+        strategy:
+          fail-fast: false
+          matrix:
+            entry: ${{ fromJson(needs.tox-matrix.outputs.envlist) }}
+        name: ${{ matrix.entry.name }}
+        runs-on: ubuntu-latest
+        steps:
+          - uses: actions/checkout@v4
+            with:
+              ref: ${{ github.event.pull_request.head.sha }}
+              fetch-depth: 0
+
+          - name: Set up Python
+            uses: actions/setup-python@v5
+            with:
+              python-version: ${{ matrix.entry.python }}
+
+          -  name: Install tox-ansible, includes tox
+             run: python3 -m pip install tox-ansible
+
+          - name: Run tox test
+            run: python3 -m tox --ansible -e ${{ matrix.entry.name }} --conf tox-ansible.ini
+            env:
+              GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+      test_passed:
+      needs: test
+      runs-on: ubuntu-latest
       steps:
-        - uses: actions/checkout@v4
-          with:
-            ref: ${{ github.event.pull_request.head.ref }}
-            repository: ${{ github.event.pull_request.head.repo.full_name }}
-
-        - name: Setup Python
-          uses: actions/setup-python@v5
-          with:
-            python-version: "3.11"
-
-        - name: Install tox-ansible, includes tox
-          run: python3 -m pip install tox-ansible
-
-        - name: Generate matrix
-          id: generate-matrix
-          run: |
-            python3 -m tox --ansible --gh-matrix --conf tox-ansible.ini
-
-    outputs:
-      envlist: $%7B%7B steps.generate-matrix.outputs.envlist %7D%7D
-
-  test:
-    needs: tox-matrix
-    strategy:
-      fail-fast: false
-      matrix:
-        entry: $%7B%7B fromJson(needs.tox-matrix.outputs.envlist) %7D%7D
-    name: $%7B%7B matrix.entry.name %7D%7D
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v4
-        with:
-          ref: $%7B%7B github.event.pull_request.head.sha %7D%7D
-          fetch-depth: 0
-
-      - name: Set up Python
-        uses: actions/setup-python@v5
-        with:
-          python-version: $%7B%7B matrix.entry.python %7D%7D
-
-      - name: Install tox-ansible, includes tox
-        run: python3 -m pip install tox-ansible
-
-      - name: Run tox test
-        run: python3 -m tox --ansible -e $%7B%7B matrix.entry.name %7D%7D --conf tox-ansible.ini
-        env:
-          GITHUB_TOKEN: $%7B%7B secrets.GITHUB_TOKEN %7D%7D
-
-  test_passed:
-    needs: test
-    runs-on: ubuntu-latest
-    steps:
-      - run: %3E-
-          python -c "assert set(%5B
-          '$%7B%7B needs.test.result %7D%7D',
-          %5D) == %7B'success'%7D"
+        - run: >-
+            python -c "assert set(['${{}} needs.test.result }}',]) == {'success'}"
