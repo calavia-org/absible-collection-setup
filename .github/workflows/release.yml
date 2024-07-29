@@ -59,17 +59,7 @@ jobs:
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
-      - name: SonarCloud Scan
-        uses: sonarsource/sonarcloud-github-action@master
+      - name: Upload coverage reports to Codecov
+        uses: codecov/codecov-action@v4.0.1
         with:
-          args: >
-            -Dsonar.organization=calavia-org
-            -Dsonar.projectKey=calavia-org_ansible-collection-setup
-            -Dsonar.junit.reportPaths=tests/reports/unit.xml,tests/reports/integration.xml
-            -Dsonar.python.coverage.reportPaths=coverage.xml
-            -Dsonar.python.version=3.12
-            -Dsonar.sources=collections/ansible_collections/calaviaorg/setup/
-            -Dsonar.tests=tests/
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-          SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
+          token: ${{ secrets.CODECOV_TOKEN }}          
