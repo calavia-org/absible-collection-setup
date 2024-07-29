@@ -12,7 +12,8 @@
 				"elagil.pre-commit-helper",
 				"ms-azuretools.vscode-docker",
 				"ms-python.python",
-				"github.vscode-github-actions"
+				"github.vscode-github-actions",
+				"DotJoshJohnson.xml"
 			]
 		}
 	},
