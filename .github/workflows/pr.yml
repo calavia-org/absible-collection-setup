@@ -90,6 +90,11 @@ jobs:
           report_paths: test/reports/unit-*.xml
         if: always()
 
+      - name: Upload coverage reports to Codecov
+        uses: codecov/codecov-action@v4.0.1
+        with:
+          token: ${{ secrets.CODECOV_TOKEN }}          
+
   integration_test:
     needs: tox-matrix
     strategy:
