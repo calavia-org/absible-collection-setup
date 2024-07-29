@@ -84,11 +84,13 @@ jobs:
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
-      - name: Create test summary
-        uses: mikepenz/action-junit-report@v4
-        with:
-          report_paths: test/reports/unit-*.xml
+      - name: Publish Test Results
+        uses: EnricoMi/publish-unit-test-result-action@v2
         if: always()
+        with:
+          files: |
+            test/reports/unit-*.xml
+
 
       - name: Upload coverage reports to Codecov
         uses: codecov/codecov-action@v4.0.1
@@ -129,11 +131,12 @@ jobs:
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       
-      - name: Create test summary
-        uses: mikepenz/action-junit-report@v4
-        with:
-          report_paths: test/reports/integration-*.xml
+      - name: Publish Test Results
+        uses: EnricoMi/publish-unit-test-result-action@v2
         if: always()
+        with:
+          files: |
+            test/reports/integration-*.xml
 
   test_passed:
     needs: [unit_test, integration_test]
