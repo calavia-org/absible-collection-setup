@@ -10,3 +10,5 @@ jobs:
     name: "job to test branch name"
     steps:
       - uses: calavia-org/check-branch-naming-action@v1.0.2
+        with:
+            allowed_branch_re: feat
