@@ -9,4 +9,4 @@ jobs:
     runs-on: ubuntu-latest
     name: "job to test branch name"
     steps:
-      - uses: calavia-org/check-branch-naming-action@v1.0.0
+      - uses: calavia-org/check-branch-naming-action@v1.0.1
