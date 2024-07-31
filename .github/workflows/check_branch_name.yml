@@ -11,4 +11,4 @@ jobs:
     steps:
       - uses: calavia-org/check-branch-naming-action@v1.0.4
         with:
-            allowed_branch_re: feat|fix
+            allowed_branch_re: major|feat|fix|doc
